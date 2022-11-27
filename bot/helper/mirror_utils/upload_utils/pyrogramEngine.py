@@ -72,8 +72,7 @@ class TgUploader:
         self.__listener.onUploadComplete(None, size, self.__msgs_dict, self.__total_files, self.__corrupted, self.name)
 
     def __upload_file(self, up_path, file_, dirpath):
-        LEECH_FILENAME_PERFIX = config_dict['LEECH_FILENAME_PERFIX']
-        if LEECH_FILENAME_PERFIX:
+        if LEECH_FILENAME_PERFIX := config_dict['LEECH_FILENAME_PERFIX']:
             cap_mono = f"{LEECH_FILENAME_PERFIX} <code>{file_}</code>"
             file_ = f"{LEECH_FILENAME_PERFIX} {file_}"
             new_path = ospath.join(dirpath, file_)
@@ -177,7 +176,7 @@ class TgUploader:
         if self.__thumb is None and thumb and ospath.lexists(thumb):
             osremove(thumb)
         if not self.__is_cancelled and \
-                   (not self.__listener.seed or self.__listener.newDir or dirpath.endswith("splited_files_mltb")):
+                       (not self.__listener.seed or self.__listener.newDir or dirpath.endswith("splited_files_mltb")):
             try:
                 osremove(up_path)
             except:
